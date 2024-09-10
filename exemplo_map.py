@@ -16,6 +16,12 @@ print(converte(numeros, str))
 print(converte(numeros, float))
 print(converte(strings, int))
 
+def dobro(n):
+    return 2*n
+
+print(converte(strings, dobro))
+print(converte(numeros, dobro))
+
 # def converte(seq_int):
 #     # percorrer a lista
 #     seq_str = []
