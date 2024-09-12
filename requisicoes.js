@@ -1,4 +1,7 @@
-const url = "https://viacep.com.br/ws/00000000/json/";
+let cep = "01.123-000";
+cep = cep.replace(".", "").replace("-", "");
+
+const url = `https://viacep.com.br/ws/${cep}/json/`;
 
 const promise = fetch(url);
 
