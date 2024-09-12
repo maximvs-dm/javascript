@@ -2,28 +2,33 @@ let cep = "01.123-000";
 cep = cep.replace(".", "").replace("-", "");
 
 const url = `https://viacep.com.br/ws/${cep}/json/`;
+console.log("URL a ser buscada:", url);
 
 const promise = fetch(url);
-
 console.log("promessa do fetch:", promise);
 
 promise
   .then((response) => {
-    console.log(response.status);
-    return response.json();
+    console.log("Status da resposta:", response.status);
+    const d1 = response.json();
+    console.log("dados no primeiro then:", d1);
+    return d1;
   })
-  .then((dados) => {
-    if ("erro" in dados) {
+  .then((d2) => {
+    console.log("dados no segundo then:", d2);
+    if ("erro" in d2) {
       throw new Error("Cep não encontrado");
     }
-    return dados;
+    d2.novaProp = "bla!";
+    return d2;
   })
-  .then((cep) => {
+  .then((d3) => {
     // aqui poderia chamar a função que vai atualizar o formulário
     // com os dados do cep na página
-    console.log(cep);
+    console.log("dados no terceiro then:", d3);
   })
   .catch((e) => {
     // aqui poderia mostrar uma msg dizendo que o cep não foi encontrado
-    console.log(e);
-  });
+    console.log("log da msg de erro:", e);
+  })
+  .then(() => console.log("FIM dos then's"));
