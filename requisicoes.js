@@ -10,16 +10,12 @@ console.log("promessa do fetch:", promise);
 promise
   .then((response) => {
     console.log("Status da resposta:", response.status);
-    const d1 = response.json();
-    console.log("dados no primeiro then:", d1);
-    return d1;
+    return response.json();
   })
   .then((d2) => {
-    console.log("dados no segundo then:", d2);
     if ("erro" in d2) {
       throw new Error("Cep não encontrado");
     }
-    d2.novaProp = "bla!";
     return d2;
   })
   .then((d3) => {
